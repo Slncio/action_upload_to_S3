@@ -1,0 +1,13 @@
+# action.yml
+name: 'Upload to S3'
+author: Martin Caarels
+branding:
+  icon: "upload"
+  color: green
+description: 'Uploads file(s) to an S3 bucket'
+runs:
+  using: 'docker'
+  image: 'docker://amazon/aws-cli:latest'
+  args:
+    - sts
+    - get-caller-identity
