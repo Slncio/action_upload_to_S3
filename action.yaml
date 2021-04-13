@@ -5,9 +5,19 @@ branding:
   icon: "upload"
   color: green
 description: 'Uploads file(s) to an S3 bucket'
+inputs:
+  source-dir:
+    description: 'directory to upload, defaults to current working directory contents'
+    default: '.'
+  bucket-name:
+    description: 'name of the bucket files will be uploaded to'
+    required: true
 runs:
   using: 'docker'
   image: 'docker://amazon/aws-cli:latest'
   args:
-    - sts
-    - get-caller-identity
+    - s3
+    - sync
+    - ${{ inputs.source-dir }}
+    - s3://${{ inputs.bucket-name }}
+    - --recursive
