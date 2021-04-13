@@ -17,7 +17,7 @@ runs:
   image: 'docker://amazon/aws-cli:latest'
   args:
     - s3
-    - sync
+    - cp
     - ${{ inputs.source-dir }}
     - s3://${{ inputs.bucket-name }}
     - --recursive
